@@ -20,6 +20,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.define "#{name}" do |node|
       node.vm.hostname = "#{name}"
       node.vm.provision "shell", path: "config.d/#{node.vm.hostname}.sh" # Configuration: node-specific (phase:2.5)
+      node.vm.synced_folder "shared.d/#{node.vm.hostname}", "/vagrant", :create => true
      end
   }
 end
